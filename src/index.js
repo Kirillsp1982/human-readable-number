@@ -24,6 +24,15 @@ module.exports = function toReadable (number) {
 		19: 'nineteen',
 		20: 'twenty',
 	}
+	if (number > 100) {
+		result = result + wordList[number[0]] + ' hundred';
+		number = '' + number[1] + number[2];
+		if (number > 0) result += ' ';
+		if (number == 0) number = 'a';
+	}
+	
+	number = String(+number);	
+	
 	if (number <= 20) {
 		result += wordList[number];
 	} 
@@ -64,6 +73,9 @@ module.exports = function toReadable (number) {
 	
 	else if (number > 90 && number <= 99) {
 		result += 'ninety ' + wordList[number[1]];
+	}
+	else if (number == 100) {
+		result += 'one hundred';
 	}
 	return result;
 }
